@@ -1,13 +1,20 @@
-import { useMemo } from "react";
+import React, { useMemo } from "react";
 import { Image, SafeAreaView, TouchableOpacity, View } from "react-native";
-import createStyles from './TempletesScreen.styles'
+import createStyles from './TempletesScreen.styles';
 
-const TempletesScreen = () => {
+interface TempletesScreenProps {
+    navigation : any,
+}
+
+const TempletesScreen: React.FC<TempletesScreenProps> = ({navigation}) => {
     const styles = useMemo(() => createStyles(), []);
     return (
         <SafeAreaView style={styles.commonFlex}>
             <View style={styles.templateContainer}>
-                <TouchableOpacity style={styles.templates}>
+                <TouchableOpacity onPress={()=>navigation.navigate('templateTitles')} style={styles.templates}>
+                    <Image style={styles.templateImg} source={require('../../assets/images/temp1.jpg')} />
+                </TouchableOpacity>
+                {/* <TouchableOpacity style={styles.templates}>
                     <Image style={styles.templateImg} source={require('../../assets/images/temp1.jpg')} />
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.templates}>
@@ -15,10 +22,7 @@ const TempletesScreen = () => {
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.templates}>
                     <Image style={styles.templateImg} source={require('../../assets/images/temp1.jpg')} />
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.templates}>
-                    <Image style={styles.templateImg} source={require('../../assets/images/temp1.jpg')} />
-                </TouchableOpacity>
+                </TouchableOpacity> */}
             </View>
         </SafeAreaView>
     )
