@@ -12,7 +12,7 @@ const TempletesScreen: React.FC<TempletesScreenProps> = ({navigation}) => {
         <SafeAreaView style={styles.commonFlex}>
             <View style={styles.templateContainer}>
                 <TouchableOpacity onPress={()=>navigation.navigate('templateTitles')} style={styles.templates}>
-                    <Image style={styles.templateImg} source={require('../../assets/images/temp1.jpg')} />
+                    <Image style={styles.templateImg} source={require('../../../assets/images/temp1.jpg')} />
                 </TouchableOpacity>
                 {/* <TouchableOpacity style={styles.templates}>
                     <Image style={styles.templateImg} source={require('../../assets/images/temp1.jpg')} />

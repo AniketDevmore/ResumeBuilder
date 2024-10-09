@@ -17,16 +17,19 @@ export default (() => {
             flexDirection: 'row',
             flexWrap: 'wrap',
             justifyContent: 'space-around',
-            backgroundColor:'gray'
         },
         templates: {
             marginTop: 15,
-
+            backgroundColor: "#fff",
+            shadowColor: "#000",
+            shadowOffset: {height: 10, width: 10},
+            shadowRadius: 10,
+            elevation: 8,
+            borderRadius: 20
         },
         templateImg: {
-            height: 150,
+            height: 200,
             width: 150,
-            borderRadius: 50
         }
     })
 })
