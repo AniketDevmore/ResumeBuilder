@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
-import { Dimensions, Pressable, SafeAreaView, Text, TextInput, View } from "react-native";
+import { Alert, Dimensions, Pressable, SafeAreaView, Text, TextInput, View } from "react-native";
 import createStyles from './TemplateTitles.styles';
 import { NestableDraggableFlatList, NestableScrollContainer } from "react-native-draggable-flatlist";
 import { useNavigation } from "@react-navigation/native";
 import PreviewButton from "../../../component/UI/Buttons/PreviewButton";
+import RNHTMLtoPDF from 'react-native-html-to-pdf';
 
 const TemplateTitles = () => {
     const navigation: any = useNavigation();
@@ -29,6 +30,18 @@ const TemplateTitles = () => {
         navigation.navigate(title, { globalState: globalState, setGlobalState: setGlobalState });
     }
 
+    const downloadPdf = async () => {
+        let options = {
+            html: '<h1>PDF TEST</h1>',
+            fileName: 'test',
+            directory: 'Download',
+          };
+      
+          let file = await RNHTMLtoPDF.convert(options)
+          // console.log(file.filePath);
+          Alert.alert(file.filePath);
+    }
+
     return (
         <SafeAreaView style={styles.outermostContainer}>
             <NestableScrollContainer>
@@ -50,6 +63,7 @@ const TemplateTitles = () => {
             <View style={styles.previewContainer}>
                 <PreviewButton onPress={() => {
                     console.log(globalState)
+                    downloadPdf();
                 }} />
             </View>
         </NestableScrollContainer>
