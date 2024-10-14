@@ -4,6 +4,7 @@ import TempletesScreen from "../screens/Template1/TempletesScreen/TempletesScree
 import { NavigationContainer } from "@react-navigation/native";
 import TemplateTitles from "../screens/Template1/TemplateTitles/TemplateTitles";
 import Profession from "../screens/Template1/Profession/Profession";
+import Skills from "../screens/Template1/Skills/Skills";
 
 const StackNavigation = () => {
     const Stack = createStackNavigator();
@@ -30,10 +31,26 @@ const StackNavigation = () => {
                     name="profession"
                     component={Profession}
                     options={{
-                        title: 'Titles',
+                        title: 'Profession',
                         headerShown: false
                     }}
                 />
+                <Stack.Screen
+                    name="skills"
+                    component={Skills}
+                    options={{
+                        title: 'Skills',
+                        headerShown: false
+                    }}
+                />
+                {/* <Stack.Screen
+                    name="skills"
+                    component={Skills}
+                    options={{
+                        title: 'Skills',
+                        headerShown: false
+                    }}
+                /> */}
             </Stack.Navigator>
         </NavigationContainer>
     )

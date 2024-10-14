@@ -63,7 +63,7 @@ const TemplateTitles = () => {
             <View style={styles.previewContainer}>
                 <PreviewButton onPress={() => {
                     console.log(globalState)
-                    downloadPdf();
+                    // downloadPdf();
                 }} />
             </View>
         </NestableScrollContainer>

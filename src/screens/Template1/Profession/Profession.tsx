@@ -10,7 +10,7 @@ interface ProfessionProps {
     route: any,
 }
 const Profession: React.FC<ProfessionProps> = ({ route }) => {
-    const naviation = useNavigation();
+    const navigation = useNavigation();
     const styles = useMemo(() => createStyles(), []);
     const [details, setDetails] = useState<any>({
         name: '',
@@ -49,7 +49,7 @@ const Profession: React.FC<ProfessionProps> = ({ route }) => {
             }
         })
         route.params.setGlobalState(newData);
-        naviation.goBack();
+        navigation.goBack();
         // console.log(newData);
     }
 
