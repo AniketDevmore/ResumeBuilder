@@ -9,6 +9,7 @@ import SocialMedia from "../screens/Template1/SocialMedia/SocialMedia";
 import Experience from "../screens/Template1/Experience/Experience";
 import Education from "../screens/Template1/Education/Education";
 import Organization from "../screens/Template1/Organization/Organization";
+import Languages from "../screens/Template1/Languages.tsx/Languages";
 
 const StackNavigation = () => {
     const Stack = createStackNavigator();
@@ -76,6 +77,14 @@ const StackNavigation = () => {
                     component={Organization}
                     options={{
                         title: 'Organization',
+                        headerShown: false
+                    }}
+                />
+                <Stack.Screen
+                    name="languages"
+                    component={Languages}
+                    options={{
+                        title: 'Languages',
                         headerShown: false
                     }}
                 />
