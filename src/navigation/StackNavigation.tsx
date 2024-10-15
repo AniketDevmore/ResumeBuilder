@@ -5,6 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import TemplateTitles from "../screens/Template1/TemplateTitles/TemplateTitles";
 import Profession from "../screens/Template1/Profession/Profession";
 import Skills from "../screens/Template1/Skills/Skills";
+import SocialMedia from "../screens/Template1/SocialMedia/SocialMedia";
 
 const StackNavigation = () => {
     const Stack = createStackNavigator();
@@ -43,14 +44,14 @@ const StackNavigation = () => {
                         headerShown: false
                     }}
                 />
-                {/* <Stack.Screen
-                    name="skills"
-                    component={Skills}
+                <Stack.Screen
+                    name="socialMedia"
+                    component={SocialMedia}
                     options={{
-                        title: 'Skills',
+                        title: 'Social Media',
                         headerShown: false
                     }}
-                /> */}
+                />
             </Stack.Navigator>
         </NavigationContainer>
     )

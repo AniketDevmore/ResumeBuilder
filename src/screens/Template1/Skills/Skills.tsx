@@ -1,6 +1,6 @@
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { useEffect, useMemo, useState } from "react";
-import { View } from "react-native";
+import { ScrollView, View } from "react-native";
 import createStyles from "./Skills.styles"
 import SaveButton from "../../../component/UI/Buttons/SaveButton";
 import { TextInput } from "react-native-paper";
@@ -47,7 +47,7 @@ const Skills: React.FC<SkillsProps> = ({ route }) => {
     }
 
     return (
-        <View style={styles.outerContainer}>
+        <ScrollView style={styles.outerContainer}>
             <SkillsPreview details={details} removeHandler={removeHandler}/>
             <View>
                 <TextInput
@@ -65,7 +65,7 @@ const Skills: React.FC<SkillsProps> = ({ route }) => {
             <View style={styles.saveButtonContainer}>
                 <SaveButton onPress={SaveHandler} />
             </View>
-        </View>
+        </ScrollView>
     )
 }
 

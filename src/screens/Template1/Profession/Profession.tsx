@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import createStyles from "./Profession.styles";
-import { View } from "react-native"
+import { ScrollView, View } from "react-native"
 import { TextInput } from "react-native-paper";
 import ProfessionPreview from "./ProfessionPreview";
 import SaveButton from "../../../component/UI/Buttons/SaveButton";
@@ -54,7 +54,7 @@ const Profession: React.FC<ProfessionProps> = ({ route }) => {
     }
 
     return (
-        <View style={styles.outerContainer}>
+        <ScrollView style={styles.outerContainer}>
             <ProfessionPreview details={details} />
             <View>
                 <TextInput
@@ -86,7 +86,7 @@ const Profession: React.FC<ProfessionProps> = ({ route }) => {
             <View style={styles.buttonContainer}>
                 <SaveButton onPress={SaveHandler} />
             </View>
-        </View>
+        </ScrollView>
     )
 }
 
