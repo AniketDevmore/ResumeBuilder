@@ -7,6 +7,7 @@ import Profession from "../screens/Template1/Profession/Profession";
 import Skills from "../screens/Template1/Skills/Skills";
 import SocialMedia from "../screens/Template1/SocialMedia/SocialMedia";
 import Experience from "../screens/Template1/Experience/Experience";
+import Education from "../screens/Template1/Education/Education";
 
 const StackNavigation = () => {
     const Stack = createStackNavigator();
@@ -58,6 +59,14 @@ const StackNavigation = () => {
                     component={Experience}
                     options={{
                         title: 'Experience',
+                        headerShown: false
+                    }}
+                />
+                <Stack.Screen
+                    name="education"
+                    component={Education}
+                    options={{
+                        title: 'Education',
                         headerShown: false
                     }}
                 />
