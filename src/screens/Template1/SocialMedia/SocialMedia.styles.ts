@@ -22,7 +22,8 @@ export default () => {
         },
         saveButtonContainer: {
             alignItems:'flex-end',
-            marginTop: 100,
+            marginTop: 10,
+            paddingBottom: 20
         }
     })
 }

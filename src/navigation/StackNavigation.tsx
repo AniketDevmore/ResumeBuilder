@@ -6,6 +6,7 @@ import TemplateTitles from "../screens/Template1/TemplateTitles/TemplateTitles";
 import Profession from "../screens/Template1/Profession/Profession";
 import Skills from "../screens/Template1/Skills/Skills";
 import SocialMedia from "../screens/Template1/SocialMedia/SocialMedia";
+import Experience from "../screens/Template1/Experience/Experience";
 
 const StackNavigation = () => {
     const Stack = createStackNavigator();
@@ -49,6 +50,14 @@ const StackNavigation = () => {
                     component={SocialMedia}
                     options={{
                         title: 'Social Media',
+                        headerShown: false
+                    }}
+                />
+                 <Stack.Screen
+                    name="experience"
+                    component={Experience}
+                    options={{
+                        title: 'Experience',
                         headerShown: false
                     }}
                 />
