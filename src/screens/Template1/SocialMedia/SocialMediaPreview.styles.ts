@@ -4,6 +4,8 @@ import colors from "../../../shared/theme/colors"
 interface Styles {
     outerContainer: ViewStyle,
     viewTextContainer: ViewStyle,
+    iconStyle: ViewStyle,
+    textStyles: TextStyle
 }
 
 export default () => {
@@ -18,6 +20,15 @@ export default () => {
         viewTextContainer: {
             flexDirection: 'row',
             flexWrap: 'wrap',
+            alignItems: 'center',
+            paddingRight: 10
         },
+        iconStyle: {
+            paddingHorizontal: 5
+        },
+        textStyles: {
+            fontSize: 13,
+            color: colors.colors.blackTextColor,
+        }
     })
 }

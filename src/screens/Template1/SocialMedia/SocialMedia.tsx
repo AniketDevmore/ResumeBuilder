@@ -65,14 +65,11 @@ const SocialMedia: React.FC<SocialMediaProps> = ({ route }) => {
         }
     };
 
-    const addHandler = () => {
-    }
-
-    const SaveHandler = () => {
+    const saveHandler = () => {
         console.log(details);
         let newData = route.params.globalState.map((ele: any) => {
-            if (ele.id === 'skills') {
-                return { ...ele, skills: details }
+            if (ele.id === 'socialMedia') {
+                return { ...ele, socialMedia: details }
             } else {
                 return ele;
             }
@@ -99,6 +96,7 @@ const SocialMedia: React.FC<SocialMediaProps> = ({ route }) => {
                     style={styles.inputStyles}
                     onChangeText={text => onChangeHandler(text, 'phone')}
                     multiline={true}
+                    maxLength={10}
                     keyboardType='numeric'
                 />
                 <TextInput
@@ -126,11 +124,8 @@ const SocialMedia: React.FC<SocialMediaProps> = ({ route }) => {
                     multiline={true}
                 />
             </View>
-            <View style={styles.addButtonContainer}>
-                <AddButton onPress={addHandler} />
-            </View>
             <View style={styles.saveButtonContainer}>
-                <SaveButton onPress={SaveHandler} />
+                <SaveButton onPress={saveHandler} />
             </View>
         </ScrollView>
     )
