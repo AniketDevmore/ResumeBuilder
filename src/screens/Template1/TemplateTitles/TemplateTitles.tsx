@@ -5,6 +5,7 @@ import { NestableDraggableFlatList, NestableScrollContainer } from "react-native
 import { useNavigation } from "@react-navigation/native";
 import PreviewButton from "../../../component/UI/Buttons/PreviewButton";
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
+import { createCustomPdf } from "../../../utils/helper";
 
 const TemplateTitles = () => {
     const navigation: any = useNavigation();
@@ -32,13 +33,13 @@ const TemplateTitles = () => {
 
     const downloadPdf = async () => {
         let options = {
-            html: '<h1>PDF TEST</h1>',
+            html: createCustomPdf(globalState),
             fileName: 'test',
             directory: 'Download',
           };
       
           let file = await RNHTMLtoPDF.convert(options)
-          // console.log(file.filePath);
+          console.log(file.filePath);
           Alert.alert(file.filePath);
     }
 
@@ -63,7 +64,7 @@ const TemplateTitles = () => {
             <View style={styles.previewContainer}>
                 <PreviewButton onPress={() => {
                     console.log(globalState)
-                    // downloadPdf();
+                    downloadPdf();
                 }} />
             </View>
         </NestableScrollContainer>
