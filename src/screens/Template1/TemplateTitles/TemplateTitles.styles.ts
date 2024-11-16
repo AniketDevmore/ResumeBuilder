@@ -47,7 +47,9 @@ export default () => {
     },
     pressableContainer: {
       height: '100%',
-      justifyContent: 'center'
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '100%'
     },
     previewContainer :{
       marginTop: 20,

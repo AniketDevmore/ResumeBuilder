@@ -1,10 +1,12 @@
 import { StyleSheet, TextStyle, ViewStyle } from "react-native"
+import colors from "../../../shared/theme/colors"
 
 interface Styles {
     outerContainer: ViewStyle,
     inputStyles: ViewStyle,
     addButtonContainer: ViewStyle,
     saveButtonContainer: ViewStyle,
+    errorText: TextStyle
 }
 
 export default () => {
@@ -24,6 +26,10 @@ export default () => {
             alignItems:'flex-end',
             marginTop: 10,
             paddingBottom: 20
+        },
+        errorText: {
+            fontSize: 14,
+            color: colors.colors.errorRed
         }
     })
 }

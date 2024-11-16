@@ -4,7 +4,9 @@ import createStyles from './TemplateTitles.styles';
 import { NestableDraggableFlatList, NestableScrollContainer } from "react-native-draggable-flatlist";
 import { useNavigation } from "@react-navigation/native";
 import PreviewButton from "../../../component/UI/Buttons/PreviewButton";
-import RNHTMLtoPDF from 'react-native-html-to-pdf';
+// import RNHTMLtoPDF from 'react-native-html-to-pdf';
+import { createCustomPdf } from "../../../utils/constantData/helper";
+import RNPrint from 'react-native-print';
 
 const TemplateTitles = () => {
     const navigation: any = useNavigation();
@@ -30,16 +32,35 @@ const TemplateTitles = () => {
         navigation.navigate(title, { globalState: globalState, setGlobalState: setGlobalState });
     }
 
+    const getIsFilled = (item:any) => {
+        console.log('item----------------->>',  Object.keys(item[item.id]).length !== 0)
+        if(Object.keys(item[item.id]).length !== 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     const downloadPdf = async () => {
-        let options = {
-            html: '<h1>PDF TEST</h1>',
-            fileName: 'test',
-            directory: 'Download',
-          };
+        // let options = {
+        //     html: createCustomPdf(globalState),
+        //     fileName: 'test',
+        //     // directory: 'Download',
+        //     base64: true,
+        //   };
       
-          let file = await RNHTMLtoPDF.convert(options)
-          // console.log(file.filePath);
-          Alert.alert(file.filePath);
+        //   let file = await RNHTMLtoPDF.convert(options)
+        //   console.log(file.filePath);
+        //   Alert.alert(file.filePath);
+        try{
+            await RNPrint.print({
+                html: createCustomPdf(globalState),
+                jobName: 'MyResume'
+             });
+
+        }catch (error){
+            console.log('pdf download error--------->>>', error)
+        }
     }
 
     return (
@@ -49,7 +70,7 @@ const TemplateTitles = () => {
                 style={styles.dragableContainer}
                 data={globalState}
                 renderItem={({ item, drag, isActive }) => (
-                    <View style={[styles.outerContainer, { backgroundColor: isActive ? 'lightgreen' : 'white' }]}>
+                    <View style={[styles.outerContainer, { backgroundColor: isActive ? '#ffcc80' : getIsFilled(item) ? '#b3ffb3' : 'white' }]}>
                         <Pressable onPress={() => pressHandler(item.id)} onLongPress={drag} style={styles.pressableContainer}>
                             <Text style={{ color: 'black' }}>{item.title}</Text>
                         </Pressable>
@@ -63,7 +84,7 @@ const TemplateTitles = () => {
             <View style={styles.previewContainer}>
                 <PreviewButton onPress={() => {
                     console.log(globalState)
-                    // downloadPdf();
+                    downloadPdf();
                 }} />
             </View>
         </NestableScrollContainer>

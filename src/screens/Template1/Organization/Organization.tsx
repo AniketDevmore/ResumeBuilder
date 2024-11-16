@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useCallback, useEffect } from "react";
 import { View } from "react-native";
 import createStyles from "./Organization.styles";
 import { TextInput } from "react-native-paper";
@@ -8,44 +8,47 @@ import SaveButton from "../../../component/UI/Buttons/SaveButton";
 import OrganizationPreview from "./OrganizationPreview";
 
 interface OrganizationProps {
-    route: any,
+    route: any;
 }
+
 const Organization: React.FC<OrganizationProps> = ({ route }) => {
     const navigation: any = useNavigation();
     const styles = useMemo(() => createStyles(), []);
 
-    const [details, setDetails] = useState<any>([]);
-    const [text, setText] = useState<any>('');
+    const [details, setDetails] = useState<string[]>([]);
+    const [text, setText] = useState<string>('');
 
-    const addHandler = () => {
-        let newData = details;
-        newData.push(text);
-        setDetails(newData);
-        console.log('clicked')
-        setText('')
-    }
+    useEffect(() => {
+        const existingLanguages = route.params.globalState.find((ele: any) => ele.id === 'organization');
+        if (existingLanguages?.organization?.length) {
+            setDetails(existingLanguages.organization);
+        }
+    }, [route]);
 
-    const SaveHandler = () => {
-        console.log(details);
-        let newData = route.params.globalState.map((ele: any) => {
-            if (ele.id === 'organization') {
-                return { ...ele, organization: details }
-            } else {
-                return ele;
-            }
-        })
+    const addHandler = useCallback(() => {
+        if (!text.trim()) {
+            console.log("Please enter a valid organization.");
+            return;
+        }
+
+        setDetails((prevDetails) => [...prevDetails, text.trim()]);
+        setText('');
+    }, [text]);
+
+    const SaveHandler = useCallback(() => {
+        const newData = route.params.globalState.map((ele: any) =>
+            ele.id === 'organization' ? { ...ele, organization: details } : ele
+        );
+
         route.params.setGlobalState(newData);
         navigation.goBack();
-    }
+    }, [details, route, navigation]);
 
-    const removeHandler = (text: any) => {
-        let index = details.findIndex((ele: any) => ele === text);
-        let newData = details;
-        newData.splice(index, 1);
-        setDetails([...newData]);
-        console.log('text--->>', index, newData, details);
-    }
-
+    const removeHandler = useCallback((organizationToRemove: string) => {
+        setDetails((prevDetails) =>
+            prevDetails.filter((item) => item !== organizationToRemove)
+        );
+    }, []);
 
     return (
         <View style={styles.outerContainer}>
@@ -56,8 +59,8 @@ const Organization: React.FC<OrganizationProps> = ({ route }) => {
                     label="Organization"
                     value={text}
                     style={styles.inputStyles}
-                    onChangeText={text => setText(text)}
-                    multiline={true}
+                    onChangeText={setText}
+                    multiline
                 />
             </View>
             <View style={styles.addButtonContainer}>
@@ -67,7 +70,7 @@ const Organization: React.FC<OrganizationProps> = ({ route }) => {
                 <SaveButton onPress={SaveHandler} />
             </View>
         </View>
-    )
-}
+    );
+};
 
 export default Organization;

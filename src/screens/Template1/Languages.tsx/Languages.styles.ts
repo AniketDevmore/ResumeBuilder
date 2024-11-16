@@ -1,10 +1,12 @@
 import { StyleSheet, TextStyle, ViewStyle } from "react-native"
+import colors from "../../../shared/theme/colors"
 
 interface Styles {
     outerContainer: ViewStyle,
     inputStyles: ViewStyle,
     addButtonContainer: ViewStyle,
     saveButtonContainer: ViewStyle,
+    dropdown: ViewStyle
 }
 
 export default () => {
@@ -24,6 +26,14 @@ export default () => {
             alignItems:'flex-end',
             marginTop: 150,
             paddingBottom: 20
-        }
+        },
+        dropdown: {
+            marginBottom: 10,
+            backgroundColor: colors.colors.whiteTextColor,
+            padding: 15,
+            borderRadius: 5,
+            borderWidth: 1,
+            borderColor: colors.colors.grayTextColor
+        },
     })
 }

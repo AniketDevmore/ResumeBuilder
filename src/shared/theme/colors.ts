@@ -4,6 +4,7 @@ export default {
         grayTextColor: '#808080',
         blackTextColor: '#000000',
         lightGrayColor: '#cccccc',
-        whiteTextColor: '#ffffff'
+        whiteTextColor: '#ffffff',
+        errorRed: '#ff0000'
     }
 }
